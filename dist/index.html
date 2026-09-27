@@ -63,6 +63,8 @@
     #hero-title{max-width:none;font-size:5.25rem;white-space:nowrap}
     .hero-theme{margin:-8px 0 22px;color:var(--orange-dark);font-size:clamp(1.3rem,2.4vw,1.75rem);font-weight:760}
     .hero-lead{max-width:760px;margin-bottom:34px;color:var(--muted);font-size:clamp(1.08rem,2vw,1.35rem)}
+    .cover-meta{display:none}
+    .proof-label{display:none}
     .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:54px}
     .hero-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(280px,1.65fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .proof,.decision{min-height:150px;padding:26px 24px}
@@ -262,6 +264,10 @@
     .close{padding:84px 0;color:#fff;background:var(--ink)}
     .close-grid{display:grid;grid-template-columns:1fr minmax(290px,.5fr);gap:56px;align-items:end}
     .close p{max-width:740px;color:#c8ccce;font-size:1.08rem}
+    .close .permission-note{margin-top:28px;padding:15px 17px;border-left:4px solid var(--orange);color:#e8f2f3;background:rgba(255,255,255,.07);font-size:.88rem;line-height:1.5}
+    .permission-note strong{display:block;margin-bottom:4px;color:var(--orange);font-size:.72rem;text-transform:uppercase}
+    .permission-contact{display:flex;flex-wrap:wrap;gap:3px 14px;margin-top:8px;font-weight:750}
+    .permission-contact a{color:inherit}
     .close-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px}
     .close .button.secondary{border-color:#596065;color:#fff;background:transparent}
     footer{padding:28px 0;border-top:1px solid #383e42;color:#aeb4b7;background:var(--ink);font-size:.82rem}
@@ -295,10 +301,155 @@
     }
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
     @media print{
-      .topbar,.progress,.hero-actions,.detail-jump,.appendix-actions,.close-actions,.toast{display:none!important}
-      body{font-size:11pt}.hero,.section,.appendix,.close{min-height:0;padding:32px 0;color:var(--ink)!important;background:#fff!important;break-inside:avoid}
-      .decision,.signal,.portfolio,.coo,.disagreement{color:var(--ink)!important;background:#fff!important;border:1px solid var(--line)}
-      .scorecard{border-color:var(--line);background:var(--line)}.score{color:var(--ink);background:#fff}details{break-inside:avoid}details>.detail-body{display:block!important}summary svg{display:none}footer{color:var(--ink);background:#fff}
+      @page{size:A4 portrait;margin:0}
+      :root{--muted:#42545a;--line:#c5d0d3}
+      *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;box-shadow:none!important;text-shadow:none!important;transition:none!important}
+      html,body{width:auto!important;background:#fff!important}
+      body{color:var(--ink)!important;font-size:9pt;line-height:1.4}
+      main{overflow:visible}
+      .shell{width:100%;max-width:none}
+      .skip,.topbar,.progress,.hero-actions,.detail-jump,.appendix-actions,.close-actions,.toast,.survey-time,summary svg,footer{display:none!important}
+      a{color:inherit!important;text-decoration:none!important}
+      h1,h2,h3,h4{break-after:avoid;page-break-after:avoid}
+      p,li{orphans:3;widows:3}
+
+      .hero{position:relative;min-height:297mm;padding:36mm 28mm 0;overflow:hidden;border:0;border-top:4mm solid var(--orange);color:#fff!important;background:#073f49!important;break-after:page;page-break-after:always}
+      .hero:before{top:70mm;right:0;width:30mm;height:2mm;background:var(--orange)}
+      .hero .eyebrow{margin-bottom:10mm;color:#ffc275!important}
+      #hero-title{max-width:150mm;margin-bottom:5mm;color:#fff;font-size:37pt;line-height:1.02;white-space:normal}
+      .hero-theme{margin:0 0 8mm;color:#ffc275;font-size:18pt}
+      .hero-lead{max-width:145mm;margin-bottom:9mm;color:#d4e9eb!important;font-size:11pt;line-height:1.55}
+      .cover-meta{display:flex;flex-wrap:wrap;gap:2mm 9mm;padding-top:5mm;border-top:1px solid #5f959c;color:#fff;font-size:8pt;font-weight:760;text-transform:uppercase}
+      .cover-meta span:last-child{color:#b9d7da}
+      .hero-proof{position:absolute;right:28mm;bottom:28mm;left:28mm;grid-template-columns:repeat(3,minmax(0,1fr));gap:3mm;margin:0;border:0;background:transparent}
+      .hero .proof,.hero .decision{min-height:0;border-radius:1.5mm}
+      .hero .proof{padding:4mm 5mm 5mm;border:0;border-top:1.2mm solid var(--orange);color:var(--ink)!important;background:#fff}
+      .proof-label{display:block;margin-bottom:2mm;color:var(--orange-dark);font-size:6.5pt;font-weight:850;text-transform:uppercase}
+      .hero .proof strong{margin-bottom:2mm;color:var(--teal);font-size:21pt}
+      .hero .proof span{max-width:none;color:var(--muted);font-size:8pt}
+      .hero .decision{display:grid;grid-column:1/-1;grid-template-columns:44mm minmax(0,1fr);gap:5mm;align-items:center;padding:5mm 6mm;border:0;border-left:1.2mm solid var(--orange);color:var(--ink)!important;background:var(--teal-soft)!important}
+      .hero .decision-label{margin:0;color:var(--teal)}
+      .hero .decision p{color:var(--ink)!important;font-size:9pt}
+      .hero .journey{display:none!important}
+
+      .section{min-height:0;padding:10mm 11mm 14mm;border:0;border-top:2mm solid var(--teal)!important;color:var(--ink)!important;background:#fff!important;-webkit-box-decoration-break:clone;box-decoration-break:clone;break-before:page;page-break-before:always}
+      .section.soft,.section.dark{color:var(--ink)!important;background:#fff!important}
+      .section.dark .section-intro,.section.dark .point p,.section.dark .section-number{color:var(--muted)!important}
+      .section.dark .point{border-color:var(--line)}
+      .section-heading{grid-template-columns:12mm minmax(0,1fr);gap:2mm 5mm;margin-bottom:5mm;padding:2mm 4mm;border:1px solid #bedde0;border-bottom:1.2mm solid var(--teal);background:var(--teal-soft)}
+      .section-heading h2{font-size:19pt;line-height:1.12}
+      .section-heading .section-number{display:grid;width:10mm;height:10mm;place-items:center;border-radius:50%;color:#fff!important;background:var(--teal);font-size:7pt}
+      .section.dark .section-heading .section-number{color:#fff!important}
+      .section-intro{grid-column:2;max-width:none;padding-top:0}
+      .section-heading .eyebrow{color:var(--teal)!important}
+      .eyebrow{margin-bottom:2.5mm;font-size:7pt}
+      .eyebrow:before{width:9mm;height:1mm}
+
+      .points,.direction-grid,.benchmark,.metric-lanes,.leadership,.close-grid,.architecture-title,.search-feedback{grid-template-columns:repeat(2,minmax(0,1fr));gap:5mm}
+      .point,.question,.direction,.proof,.decision,.signal,.portfolio,.evaluation-strip article,.flow-step,.feedback-step,.score,.metric-lane,.coo,.phase,.dependency,.cadence-row,.disagreement,.detail-block{break-inside:avoid;page-break-inside:avoid}
+      .point{min-height:0;padding:5mm 5mm 5mm 10mm}
+      .point:before{top:6mm;left:4mm}
+      .point .metric{font-size:16pt}
+
+      .survey-panel{margin-top:7mm;overflow:visible;border-radius:0;break-before:page;page-break-before:always}
+      .survey-panel>summary{grid-template-columns:1fr;min-height:0;padding:5mm;border-bottom:1.2mm solid var(--teal);background:var(--teal-soft)}
+      .survey-panel .survey-kicker{color:var(--teal)}
+      .survey-panel>.survey-body{display:block!important;padding:4mm}
+      .survey-grid{display:block}
+      .survey-question{margin-bottom:4mm;padding:4mm;border-top:1mm solid #bedde0;break-inside:avoid;page-break-inside:avoid}
+      .survey-question:last-child{margin-bottom:0}
+      .survey-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5mm 5mm}
+      .survey-options li{font-size:7.5pt}
+      .interview-heading{margin-top:7mm}
+      .questions{grid-template-columns:repeat(2,minmax(0,1fr));gap:2mm;border:0;background:transparent}
+      .question{min-height:0;border:1px solid var(--line);border-top:1mm solid var(--teal)}
+      .question:last-child{grid-column:1/-1}
+
+      .benchmark{align-items:stretch}
+      .benchmark-row{padding:4mm 0}
+      .signal{padding:5mm;border:1px solid var(--line)!important;color:var(--ink)!important;background:var(--soft)!important}
+      .signal p,.signal .formula small{color:var(--muted)!important}
+      .formula{margin:4mm 0}
+      .formula div{padding:2.5mm 0}
+
+      .direction-head,.direction-body{padding:5mm}
+      .direction-head{min-height:0}
+      .direction-head h3{font-size:14pt}
+      .portfolio{grid-template-columns:45mm 1fr;padding:5mm;border:1px solid var(--line)!important;color:var(--ink)!important;background:#eef8f4!important}
+      .portfolio p,.portfolio .decision-label{color:var(--muted)!important}
+      .portfolio h3,.portfolio .split strong{color:var(--ink)!important}
+      .split strong{font-size:24pt}
+      .evaluation-strip{grid-template-columns:repeat(3,minmax(0,1fr));gap:2mm;border:0;background:transparent}
+      .evaluation-strip article{min-height:0;border:1px solid var(--line)}
+      .architecture{margin-top:7mm;padding:5mm}
+      .architecture-title{margin-bottom:5mm}
+      .investment-map{grid-template-columns:7fr 3fr}
+      .investment-track{padding:4mm}
+      .flow{grid-template-columns:repeat(3,minmax(0,1fr));gap:3mm}
+      .flow-step{min-height:0;padding:4mm}
+      .flow-step:after{display:none!important}
+      .clarifier{grid-template-columns:38mm 1fr;margin-top:5mm;padding-top:4mm}
+      .search-feedback{margin-top:6mm;padding:6mm 0}
+      .feedback-steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .feedback-step{min-height:0;padding:4mm}
+
+      .scorecard{grid-template-columns:repeat(2,minmax(0,1fr));gap:3mm;border:0;background:transparent}
+      .score{min-height:0;padding:5mm;border:1px solid var(--line);color:var(--ink)!important;background:#fff!important}
+      .score:nth-child(5){grid-column:1/-1}
+      .score strong{color:var(--teal);font-size:18pt}
+      .score h3{min-height:0}
+      .score p{color:var(--muted)!important}
+      .metric-lanes{margin-top:6mm}
+      .metric-lane,.coo{padding:5mm;border:1px solid var(--line);color:var(--ink)!important;background:var(--soft)!important}
+      .metric-lane p,.coo p{color:var(--muted)!important}
+
+      .roadmap{grid-template-columns:repeat(2,minmax(0,1fr));gap:3mm;margin-top:0;border:0}
+      .phase,.phase:last-child,.phase:nth-child(-n+2){min-height:0;padding:5mm;border:1px solid var(--line);border-top:1.2mm solid var(--teal)}
+      .dependencies{grid-template-columns:repeat(3,minmax(0,1fr));gap:3mm;margin-top:6mm;border:0;background:transparent}
+      .dependency{min-height:0;padding:5mm;border:1px solid var(--line)}
+
+      .leadership{align-items:stretch}
+      .cadence{display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:0;overflow:hidden;border:1px solid var(--line);border-radius:1.5mm;background:#fff}
+      .cadence-row{grid-template-columns:30mm minmax(0,1fr);gap:0;align-content:stretch;margin:0;padding:0;border:0;border-bottom:1px solid var(--line)}
+      .cadence-row:last-child{border-bottom:0}
+      .cadence-row>strong{display:flex;align-items:center;justify-content:center;padding:4mm 3mm;border-right:1px solid #b9dadd;color:var(--teal);background:var(--teal-soft)}
+      .cadence-row>div{display:flex;flex-direction:column;justify-content:center;padding:5mm 6mm}
+      .cadence-row h3{margin-bottom:2mm;font-size:12pt}
+      .cadence-row p{margin:0}
+      .disagreement{height:100%;padding:5mm;border:1px solid var(--line)!important;color:var(--ink)!important;background:#fff!important}
+      .disagreement h3{font-size:14pt}
+      .disagreement ol{margin-top:5mm}
+      .disagreement li{margin-bottom:4mm}
+
+      .appendix{padding:12mm 11mm 14mm;color:var(--ink)!important;background:#fff!important;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+      .appendix-header{grid-template-columns:1fr;margin-bottom:7mm;padding:3mm 5mm 2mm;border:1px solid #bedde0;border-top:2mm solid var(--teal);background:var(--teal-soft);break-before:page;page-break-before:always}
+      .appendix-header .eyebrow{color:var(--teal)}
+      .appendix-header h2{font-size:20pt}
+      .detail-list{border:0}
+      details{border:0;background:#fff;break-before:page;page-break-before:always}
+      .detail-list details:first-child{break-before:auto;page-break-before:auto}
+      details>summary{grid-template-columns:12mm 1fr;min-height:0;padding:2mm 3mm 3mm;border-top:1.4mm solid var(--teal);border-bottom:1px solid #bedde0;background:var(--teal-soft);font-size:14pt}
+      details>summary .detail-number{color:var(--teal)}
+      details>.detail-body{display:block!important;padding:0}
+      .detail-body>p{max-width:none}
+      .detail-columns,.detail-columns.three{grid-template-columns:repeat(2,minmax(0,1fr));gap:5mm}
+      .detail-block{padding-top:4mm}
+      .detail-example{padding:3mm}
+      .table-wrap{margin-top:5mm;overflow:visible}
+      table{table-layout:fixed;font-size:7.5pt}
+      thead{display:table-header-group}
+      tr{break-inside:avoid;page-break-inside:avoid}
+      th,td{padding:2.5mm}
+      .assumptions{margin-top:6mm;padding-top:5mm}
+      .assumptions ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:2mm 6mm}
+
+      .close{position:relative;display:flex;min-height:297mm;align-items:center;padding:12mm 11mm 14mm;border-top:2mm solid var(--teal);color:var(--ink)!important;background:linear-gradient(180deg,var(--teal-soft) 0,rgba(225,242,243,0) 70mm)!important;break-before:page;page-break-before:always}
+      .close .eyebrow{color:var(--teal)}
+      .close-grid{grid-template-columns:1fr}
+      .close h2{max-width:165mm;font-size:24pt}
+      .close p{max-width:165mm;color:var(--muted)!important;font-size:11pt}
+      .close .permission-note{position:absolute;right:11mm;bottom:14mm;left:11mm;max-width:none;margin:0;padding:4mm 5mm;border-left:1.2mm solid var(--teal);color:var(--ink)!important;background:var(--teal-soft);font-size:8pt}
+      .permission-note strong{color:var(--teal)}
     }
 
     /* Ocean presentation theme */
@@ -859,13 +1010,61 @@
         box-shadow:0 10px 24px rgba(7,57,67,.07);
       }
 
-      .cadence-row {
-        margin-bottom:12px;
-        padding:22px;
+      .leadership {
+        align-items:stretch;
+      }
+
+      .cadence {
+        display:grid;
+        grid-template-rows:repeat(3,minmax(0,1fr));
+        gap:0;
+        overflow:hidden;
         border:1px solid #c9dfe2;
         border-radius:8px;
         background:#fff;
         box-shadow:0 10px 24px rgba(7,57,67,.07);
+      }
+
+      .cadence-row {
+        grid-template-columns:140px minmax(0,1fr);
+        gap:0;
+        align-content:stretch;
+        margin-bottom:0;
+        padding:0;
+        border:0;
+        border-bottom:1px solid #c9dfe2;
+        border-radius:0;
+        background:#fff;
+        box-shadow:none;
+      }
+
+      .cadence-row:last-child {
+        border-bottom:0;
+      }
+
+      .cadence-row>strong {
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:24px 18px;
+        border-right:1px solid #b9dadd;
+        color:#076d78;
+        background:#e5f4f4;
+      }
+
+      .cadence-row>div {
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        padding:26px 30px;
+      }
+
+      .cadence-row h3 {
+        margin-bottom:8px;
+      }
+
+      .cadence-row p {
+        margin:0;
       }
 
       .disagreement {
@@ -874,6 +1073,7 @@
         color:var(--ink);
         background:#fff;
         box-shadow:0 10px 24px rgba(7,57,67,.07);
+        height:100%;
       }
 
       .appendix {
@@ -946,7 +1146,18 @@
 
       .cadence-row {
         grid-template-columns:1fr;
-        gap:8px;
+        gap:0;
+      }
+
+      .cadence-row>strong {
+        justify-content:flex-start;
+        padding:15px 20px;
+        border-right:0;
+        border-bottom:1px solid #b9dadd;
+      }
+
+      .cadence-row>div {
+        padding:20px;
       }
 
       .question {
@@ -1011,14 +1222,15 @@
         <h1 id="hero-title">Project Finding Nemo</h1>
         <p class="hero-theme">Search for the better search.</p>
         <p class="hero-lead">A phased strategy to rebuild trust in search, protect retention and create a controlled path from Apache Solr fundamentals to semantic and AI-assisted discovery.</p>
+        <div class="cover-meta" aria-label="Document author and type"><span>Prepared by Clinton DSouza</span><span>Search strategy recommendation</span></div>
         <div class="hero-actions">
           <a class="button orange" href="#problem">Start the presentation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <button class="button secondary" type="button" data-open-detail="detail-decision">Read the decision rationale</button>
         </div>
         <div class="hero-proof" aria-label="Problem signals and recommendation">
-          <div class="proof"><strong>+32%</strong><span>Year-on-year growth in search-related support tickets.</span></div>
-          <div class="proof"><strong>7 / 20</strong><span>Top accounts where search contributes to churn risk.</span></div>
-          <div class="proof"><strong>3 years</strong><span>Of compounding user feedback without a focused response.</span></div>
+          <div class="proof"><small class="proof-label">Support pressure</small><strong>+32%</strong><span>Year-on-year growth in search-related support tickets.</span></div>
+          <div class="proof"><small class="proof-label">Account exposure</small><strong>7 / 20</strong><span>Top accounts where search contributes to churn risk.</span></div>
+          <div class="proof"><small class="proof-label">Unresolved need</small><strong>3 years</strong><span>Of compounding user feedback without a focused response.</span></div>
           <div class="decision"><span class="decision-label">Portfolio recommendation</span><p>Fix the Solr foundation now, validate semantic retrieval beside it, and unlock generative experiences only after quality, trust and economics pass explicit gates.</p></div>
         </div>
         <div class="journey" aria-label="Presentation sequence"><ol><li>Frame the problem</li><li>Discover and validate</li><li>Read the market</li><li>Choose the portfolio</li><li>Measure outcomes</li><li>Deliver and align</li></ol></div>
@@ -1229,7 +1441,7 @@
           <article class="score"><strong>01</strong><h3>Search task success</h3><p>Percentage of search sessions that reach a defined downstream outcome without support or manual recovery.</p><p class="score-example"><span>Example</span>A user searches for the Q3 campaign brief, opens the approved version and adds it to a campaign without asking Support.</p></article>
           <article class="score"><strong>02</strong><h3>Time to useful result</h3><p>Median time from the first query to the first meaningful action, segmented by task and customer type.</p><p class="score-example"><span>Example</span>A user submits a query and opens the correct approved asset 42 seconds later.</p></article>
           <article class="score"><strong>03</strong><h3>Failed-search rate</h3><p>Zero-result, repeated reformulation and abandonment signals combined into a visible failure measure.</p><p class="score-example"><span>Example</span>A search returns no results, the user tries two new queries, then leaves without opening an asset.</p></article>
-          <article class="score"><strong>04</strong><h3>Relevance quality</h3><p>NDCG@10 or reciprocal rank on a judged query set, with separate scores for lexical and semantic use cases.</p><p class="score-example"><span>Example</span>For "latest APAC product launch video," the approved video appears within the top three judged results.</p></article>
+          <article class="score"><strong>04</strong><h3>Relevance quality</h3><p>How close the best answers are to the top, measured on searches judged by people who know the content.</p><p class="score-example"><span>Example</span>For "latest APAC product launch video," the approved video appears within the top three judged results.</p></article>
           <article class="score"><strong>05</strong><h3>Business exposure</h3><p>Search-related tickets, support hours, account-health movement and renewal-risk mentions over time.</p><p class="score-example"><span>Example</span>Track whether accounts with high failed-search rates also create more tickets or mention findability during renewals.</p></article>
         </div>
         <div class="metric-lanes"><article class="metric-lane"><h3>Direction A proves reliability.</h3><p>Expect lower zero-result and reformulation rates, better first-result relevance, faster task completion and fewer support contacts.</p></article><article class="metric-lane"><h3>Direction B must prove incremental value.</h3><p>Measure win rate on hard queries, grounded-answer accuracy, user preference, p95 latency and cost per successful task.</p></article></div>
@@ -1406,7 +1618,7 @@
       </div>
     </section>
 
-    <section class="close" aria-labelledby="close-title"><div class="shell close-grid"><div><div class="eyebrow">Decision summary</div><h2 id="close-title">Fix what is broken. Prove what is possible. Scale only what earns trust.</h2><p>Keep Apache Solr as the governed retrieval core, improve the deterministic experience first, validate semantic lift on real customer tasks and reserve generative AI for grounded use cases where it adds measurable value.</p></div><div class="close-actions"><button class="button orange" type="button" data-copy-summary>Copy summary <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a class="button secondary" href="#top">Back to top</a></div></div></section>
+    <section class="close" aria-labelledby="close-title"><div class="shell close-grid"><div><div class="eyebrow">Decision summary</div><h2 id="close-title">Fix what is broken. Prove what is possible. Scale only what earns trust.</h2><p>Keep Apache Solr as the governed retrieval core, improve the deterministic experience first, validate semantic lift on real customer tasks and reserve generative AI for grounded use cases where it adds measurable value.</p><p class="permission-note"><strong>Permission notice</strong>This strategy is provided for assessment and discussion only. The implementation concepts outlined here may not be used or implemented without prior written permission.<span class="permission-contact"><span>Clinton DSouza</span><a href="mailto:clintondza@gmail.com">clintondza@gmail.com</a></span></p></div><div class="close-actions"><a class="button secondary" href="#top">Back to top</a></div></div></section>
   </main>
 
   <footer><div class="shell footer-inner"><span>Search functionality improvement practical assessment</span><span>Presentation overview with detailed evidence appendix</span></div></footer>
@@ -1422,8 +1634,10 @@
     document.querySelectorAll("[data-open-detail]").forEach(function(button){button.addEventListener("click",function(){const target=document.getElementById(button.dataset.openDetail);if(!target)return;target.open=true;target.scrollIntoView({behavior:"smooth",block:"start"});setTimeout(function(){target.querySelector("summary").focus()},520)})});
     document.querySelector("[data-expand-all]").addEventListener("click",function(){document.querySelectorAll(".detail-list details").forEach(function(d){d.open=true});say("All detailed evidence is open.")});
     document.querySelector("[data-collapse-all]").addEventListener("click",function(){document.querySelectorAll(".detail-list details").forEach(function(d){d.open=false});say("Detailed evidence is closed.")});
+    let printDetailState=null;
+    window.addEventListener("beforeprint",function(){const items=[...document.querySelectorAll("details")];printDetailState=items.map(function(item){return item.open});items.forEach(function(item){item.open=true})});
+    window.addEventListener("afterprint",function(){if(!printDetailState)return;document.querySelectorAll("details").forEach(function(item,index){item.open=printDetailState[index]});printDetailState=null});
     document.querySelector("[data-print]").addEventListener("click",function(){window.print()});
-    document.querySelector("[data-copy-summary]").addEventListener("click",async function(){const summary="Recommendation: repair the Apache Solr foundation first, invest 70/30 in Direction A versus a bounded Direction B prototype, validate semantic retrieval on real hard-query tasks, and add generative answers only when relevance, grounding, permissions, latency and cost pass explicit gates.";try{await navigator.clipboard.writeText(summary);say("Decision summary copied.")}catch(error){say("Copy was unavailable. Select the decision summary above.")}});
   </script>
 </body>
 </html>
