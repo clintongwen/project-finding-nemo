@@ -15,7 +15,7 @@
       --radius:6px; --shadow:0 12px 32px rgba(19,21,22,.08);
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header) + 3px)}
     body{margin:0;color:var(--ink);background:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.55}
     body.no-scroll{overflow:hidden}
     a{color:inherit;text-decoration-thickness:1px;text-underline-offset:4px}
@@ -79,7 +79,7 @@
     .journey li{position:relative;min-height:74px;padding:0 14px 0 27px;color:var(--muted);counter-increment:path;font-size:.82rem;font-weight:720}
     .journey li:before{position:absolute;top:1px;left:0;display:grid;width:20px;height:20px;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--ink);background:#fff;content:counter(path);font-size:.7rem}
     .journey li:after{position:absolute;top:11px;right:0;left:20px;z-index:-1;height:1px;background:var(--line);content:""}
-    .section{min-height:78vh;padding:92px 0;border-bottom:1px solid var(--line);scroll-margin-top:70px}
+    .section{min-height:78vh;padding:92px 0;border-bottom:1px solid var(--line)}
     .section.soft{background:var(--soft)}
     .section.dark{color:#fff;background:var(--ink)}
     .section.dark .section-intro,.section.dark .point p,.section.dark .section-number{color:#bec3c7}
@@ -98,6 +98,12 @@
     .detail-jump{display:flex;justify-content:flex-end;margin-top:28px}
     .text-link{min-height:38px;padding:6px 0;color:var(--blue);background:transparent}
     .text-link:hover{color:var(--ink)}
+    .section-next{display:flex;justify-content:flex-end;margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
+    .section-next-link{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;min-width:210px;padding:12px 14px 12px 17px;border:1px solid #a8cdd1;border-radius:var(--radius);color:#075f69;background:#fff;box-shadow:0 8px 20px rgba(7,57,67,.07);font-weight:760;text-decoration:none;transition:color .28s ease,background-color .28s ease,border-color .28s ease,box-shadow .28s ease,transform .28s ease}
+    .section-next-copy{display:grid;gap:1px}
+    .section-next-copy small{color:var(--muted);font-size:.68rem;font-weight:820;line-height:1.2;text-transform:uppercase;transition:color .28s ease}
+    .section-next-copy strong{font-size:.9rem;line-height:1.25}
+    .section-next-link svg{width:19px;height:19px;flex:0 0 auto;transition:transform .28s ease}
     .survey-panel{margin:38px 0 0;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:#fff}
     .survey-panel summary{display:grid;grid-template-columns:130px 1fr auto 28px;gap:18px;align-items:center;min-height:86px;padding:18px 22px;cursor:pointer;list-style:none}
     .survey-panel summary::-webkit-details-marker{display:none}
@@ -308,7 +314,7 @@
       body{color:var(--ink)!important;font-size:9pt;line-height:1.4}
       main{overflow:visible}
       .shell{width:100%;max-width:none}
-      .skip,.topbar,.progress,.hero-actions,.detail-jump,.appendix-actions,.close-actions,.toast,.survey-time,summary svg,footer{display:none!important}
+      .skip,.topbar,.progress,.hero-actions,.detail-jump,.section-next,.appendix-actions,.close-actions,.toast,.survey-time,summary svg,footer{display:none!important}
       a{color:inherit!important;text-decoration:none!important}
       h1,h2,h3,h4{break-after:avoid;page-break-after:avoid}
       p,li{orphans:3;widows:3}
@@ -1215,6 +1221,22 @@
           transform:translateX(2px);
         }
 
+        .section-next-link:hover {
+          border-color:#087783;
+          color:#fff;
+          background:#087783;
+          box-shadow:0 14px 30px rgba(7,91,101,.2);
+          transform:translateY(-2px);
+        }
+
+        .section-next-link:hover .section-next-copy small {
+          color:#d5eff1;
+        }
+
+        .section-next-link:hover svg {
+          transform:translateY(3px);
+        }
+
         details:not(.survey-panel) summary:hover {
           background:#f4fbfb;
         }
@@ -1323,6 +1345,11 @@
 
       .survey-options {
         grid-template-columns:1fr;
+      }
+
+      .section-next-link {
+        width:100%;
+        min-width:0;
       }
 
       .interview-heading {
@@ -1761,7 +1788,7 @@
       </div>
     </section>
 
-    <section class="close" aria-labelledby="close-title"><div class="shell close-grid"><div><div class="eyebrow">Decision summary</div><h2 id="close-title">Fix what is broken. Prove what is possible. Scale only what earns trust.</h2><p>Keep Apache Solr as the governed retrieval core, improve the deterministic experience first, validate semantic lift on real customer tasks and reserve generative AI for grounded use cases where it adds measurable value.</p><p class="permission-note"><strong>Permission notice</strong>This strategy is provided for assessment and discussion only. The implementation concepts outlined here may not be used or implemented without prior written permission.<span class="permission-contact"><span>Clinton DSouza</span><a href="mailto:clintondza@gmail.com">clintondza@gmail.com</a></span></p></div><div class="close-actions"><a class="button secondary" href="#top">Back to top</a></div></div></section>
+    <section class="close" id="decision-summary" aria-labelledby="close-title"><div class="shell close-grid"><div><div class="eyebrow">Decision summary</div><h2 id="close-title">Fix what is broken. Prove what is possible. Scale only what earns trust.</h2><p>Keep Apache Solr as the governed retrieval core, improve the deterministic experience first, validate semantic lift on real customer tasks and reserve generative AI for grounded use cases where it adds measurable value.</p><p class="permission-note"><strong>Permission notice</strong>This strategy is provided for assessment and discussion only. The implementation concepts outlined here may not be used or implemented without prior written permission.<span class="permission-contact"><span>Clinton DSouza</span><a href="mailto:clintondza@gmail.com">clintondza@gmail.com</a></span></p></div><div class="close-actions"><a class="button secondary" href="#top">Back to top</a></div></div></section>
   </main>
 
   <footer><div class="shell footer-inner"><span>Search functionality improvement practical assessment</span><span>Presentation overview with detailed evidence appendix</span></div></footer>
@@ -1783,6 +1810,17 @@
       set(open){if(open){if(!this.detail.open||this.closing)this.open()}else if(this.detail.open||this.expanding){this.close()}}
     }
     detailItems.forEach(function(detail){detailControllers.set(detail,new DetailController(detail))});
+    const sectionFlow=[
+      ["problem","discovery","Problem discovery"],
+      ["discovery","market","Competitive analysis"],
+      ["market","solutions","Solution exploration"],
+      ["solutions","measurement","Success measurement"],
+      ["measurement","delivery","Implementation"],
+      ["delivery","leadership","Leadership"],
+      ["leadership","appendix","Detailed evidence"],
+      ["appendix","decision-summary","Decision summary"]
+    ];
+    sectionFlow.forEach(function(step){const section=document.getElementById(step[0]),target=document.getElementById(step[1]),shell=section&&section.querySelector(":scope>.shell");if(!section||!target||!shell)return;const next=document.createElement("div");next.className="section-next";next.innerHTML='<a class="section-next-link" href="#'+step[1]+'" aria-label="Next section: '+step[2]+'"><span class="section-next-copy"><small>Next</small><strong>'+step[2]+'</strong></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>';next.querySelector("a").addEventListener("click",function(event){event.preventDefault();target.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"start"});history.replaceState(null,"","#"+step[1])});shell.appendChild(next)});
     menu.addEventListener("click",function(){const open=nav.classList.toggle("open");menu.setAttribute("aria-expanded",String(open));menu.setAttribute("aria-label",open?"Close navigation":"Open navigation");document.body.classList.toggle("no-scroll",open)});
     nav.querySelectorAll("a").forEach(function(link){link.addEventListener("click",function(){nav.classList.remove("open");menu.setAttribute("aria-expanded","false");document.body.classList.remove("no-scroll")})});
     function progress(){const root=document.documentElement,max=root.scrollHeight-root.clientHeight,ratio=max>0?root.scrollTop/max:0;bar.style.transform="scaleX("+ratio+")"}window.addEventListener("scroll",progress,{passive:true});progress();
@@ -1790,7 +1828,7 @@
     document.querySelectorAll("[data-open-detail]").forEach(function(button){button.addEventListener("click",function(){const target=document.getElementById(button.dataset.openDetail);if(!target)return;detailControllers.get(target).set(true);target.scrollIntoView({behavior:"smooth",block:"start"});setTimeout(function(){target.querySelector("summary").focus()},680)})});
     document.querySelector("[data-expand-all]").addEventListener("click",function(){detailControllers.forEach(function(controller){controller.set(true)});say("All detailed evidence is open.")});
     document.querySelector("[data-collapse-all]").addEventListener("click",function(){detailControllers.forEach(function(controller){controller.set(false)});say("Detailed evidence is closed.")});
-    const revealSelector=".section-heading,.point,.survey-panel,.interview-heading,.question,.benchmark-row,.signal,.direction,.portfolio,.evaluation-strip article,.architecture,.search-feedback,.score,.metric-lane,.coo,.phase,.dependency,.cadence,.disagreement,.detail-list>details,.close-grid>*";
+    const revealSelector=".section-heading,.point,.survey-panel,.interview-heading,.question,.benchmark-row,.signal,.direction,.portfolio,.evaluation-strip article,.architecture,.search-feedback,.score,.metric-lane,.coo,.phase,.dependency,.cadence,.disagreement,.detail-list>details,.section-next,.close-grid>*";
     const revealItems=[...document.querySelectorAll(revealSelector)];
     const motionCards=[...document.querySelectorAll(".point,.question,.signal,.direction,.evaluation-strip article,.architecture,.score,.metric-lane,.phase,.dependency,.cadence,.disagreement,.detail-list>details")];
     motionCards.forEach(function(item){item.classList.add("motion-card")});
